@@ -41,8 +41,9 @@ sudo systemctl start $SERVICE_NAME
 ### sleep computers using the authorization header
 
 ```bash
+REMOTE_CONTROL_SERVER=localhost:3000
 REMOTE_CONTROL_TOKEN=CKl3euiIUVNgaxyhYqqvXciLCfu2P3TsZjMrPDjenXRZgVcOglA9BpuI0OlGZJ4wFRy8KtqzihzRrQNeslSHTA
-curl -X POST "localhost:3000/remote-control/sleepComputers" -H "Authorization: Bearer $REMOTE_CONTROL_TOKEN"
+curl -X POST "$REMOTE_CONTROL_SERVER/remote-control/sleepComputers" -H "Authorization: Bearer $REMOTE_CONTROL_TOKEN"
 ```
 
 ### sleep computers using the authorization query string
@@ -50,6 +51,7 @@ curl -X POST "localhost:3000/remote-control/sleepComputers" -H "Authorization: B
 This is because IFTTT doesn't allow setting headers in their requests
 
 ```bash
+REMOTE_CONTROL_SERVER=localhost:3000
 REMOTE_CONTROL_TOKEN=CKl3euiIUVNgaxyhYqqvXciLCfu2P3TsZjMrPDjenXRZgVcOglA9BpuI0OlGZJ4wFRy8KtqzihzRrQNeslSHTA
-curl -X POST "localhost:3000/remote-control/sleepComputers?authorization=$REMOTE_CONTROL_TOKEN"
+curl -X POST "$REMOTE_CONTROL_SERVER/remote-control/sleepComputers?authorization=$REMOTE_CONTROL_TOKEN"
 ```
