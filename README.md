@@ -2,6 +2,40 @@
 
 Basic NestJS server that responds to HTTP RPC from cloud services, and forwards these requests as events over a WebSocket server on the LAN.
 
+## setup
+
+```bash
+SERVICE_NAME=sehlceris-home-automation-server
+mkdir -p ~/apps
+cd ~/apps
+git clone https://github.com/sehlceris/$SERVICE_NAME.git
+cd $SERVICE_NAME
+cp config.example.json config.json
+chmod 600 config.json
+npm i
+```
+
+At this point, edit your config.json to your needs.
+
+```bash
+echo "[Unit]
+Description=$SERVICE_NAME
+
+[Service]
+Restart=always
+ExecStart=npm --prefix $PWD start
+
+[Install]
+WantedBy=default.target
+" | sudo tee /etc/systemd/system/$SERVICE_NAME.service  > /dev/null
+
+sudo systemctl stop $SERVICE_NAME
+sudo systemctl daemon-reload
+sudo systemctl enable $SERVICE_NAME
+sudo systemctl start $SERVICE_NAME
+```
+
+
 ## testing
 
 ### sleep computers using the authorization header
