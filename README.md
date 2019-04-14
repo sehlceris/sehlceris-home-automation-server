@@ -23,7 +23,7 @@ Description=$SERVICE_NAME
 
 [Service]
 Restart=always
-ExecStart=npm --prefix $PWD start
+ExecStart=/usr/local/bin/npm --prefix $PWD start
 
 [Install]
 WantedBy=default.target
