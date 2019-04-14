@@ -10,7 +10,7 @@ mkdir -p ~/apps
 cd ~/apps
 git clone https://github.com/sehlceris/$SERVICE_NAME.git
 cd $SERVICE_NAME
-cp config.example.json config.json
+touch config.json
 chmod 600 config.json
 npm i
 npm run build
@@ -19,7 +19,8 @@ npm run build
 At this point, edit your config.json to your needs.
 
 ```bash
-echo "[Unit]
+echo "
+[Unit]
 Description=$SERVICE_NAME
 
 [Service]
@@ -31,9 +32,11 @@ WantedBy=default.target
 " | sudo tee /etc/systemd/system/$SERVICE_NAME.service  > /dev/null
 
 sudo systemctl stop $SERVICE_NAME
+sudo systemctl disable $SERVICE_NAME
 sudo systemctl daemon-reload
 sudo systemctl enable $SERVICE_NAME
 sudo systemctl start $SERVICE_NAME
+sudo systemctl status $SERVICE_NAME
 ```
 
 
