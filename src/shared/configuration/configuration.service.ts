@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
-import { IConfiguration } from './configuration.interface';
+import { IAppConfiguration } from './configuration.interface';
 
 const CONFIG_PATH = './config.json';
-const config: IConfiguration = Object.freeze(JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8')));
+const config: IAppConfiguration = Object.freeze(JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8')));
 
 export enum Environment {
   Development = 'development',
@@ -14,7 +14,7 @@ export enum Environment {
 @Injectable()
 export class ConfigurationService {
 
-  private _config: IConfiguration;
+  private _config: IAppConfiguration;
 
   constructor() {
     this._config = config;
@@ -22,7 +22,7 @@ export class ConfigurationService {
 
   static environment: string = process.env.NODE_ENV || Environment.Development;
 
-  static get config(): IConfiguration {
+  static get config(): IAppConfiguration {
     return config;
   }
 
@@ -36,7 +36,7 @@ export class ConfigurationService {
     return ConfigurationService.environment;
   }
 
-  get config(): IConfiguration {
+  get config(): IAppConfiguration {
     return ConfigurationService.config;
   }
 

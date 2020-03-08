@@ -3,7 +3,7 @@ export interface IRemoteControlApiKey {
   key: string;
 }
 
-export interface IConfiguration {
+export interface IAppConfiguration {
   port: number;
   apiKeys: IRemoteControlApiKey[];
 }
