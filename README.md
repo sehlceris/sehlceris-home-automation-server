@@ -17,6 +17,10 @@ You need a MQTT broker running so that the server can connect to it.
 
 ### run with docker
 
+NOTE: If your MQTT broker is on your local network, note that the Docker container cannot use MDNS.
+So, if your server hosting MQTT is named `myserver.local` and has an IP address of `192.168.1.10`, you should configure it with the IP address rather than the MDNS name.
+A possible workaround is to run the container with a [macvlan](https://docs.docker.com/network/macvlan/) network.
+
 ```bash
 dpocker pull sehlceris/home-automation-server
 
