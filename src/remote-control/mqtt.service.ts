@@ -19,7 +19,7 @@ export class MqttService {
     private logService: LogService,
   ) {
     this.connectToMqtt()
-      .then(() => this.log.info('mqtt client connected'))
+      .then(() => {})
       .catch((err) => process.exit(1));
   }
 
@@ -39,6 +39,7 @@ export class MqttService {
   }
 
   private async connectToMqtt() {
+    this.log.info(`connecting to mqtt broker at ${this.mqttBrokerUri} with user '${this.mqttUsername}'`);
     if (this.mqttClient) {
       await this.mqttClient.end();
       this.mqttClient = null;
@@ -50,6 +51,7 @@ export class MqttService {
         password: this.mqttPassword,
       }
     );
+    this.log.info('mqtt client connected');
   }
 
 }

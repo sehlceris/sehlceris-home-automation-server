@@ -5,8 +5,8 @@
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es6",
-    "sourceMap": true,
+    "target": "es2018",
+    "sourceMap": false,
     "outDir": "./dist",
     "baseUrl": "./"
   },

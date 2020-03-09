@@ -1,8 +1,33 @@
 # sehlceris-home-automation-server
 
-Basic NestJS server that responds to HTTP RPC from cloud services, and forwards these requests as events over a WebSocket server on the LAN.
+Basic NestJS server that responds to HTTP RPC from cloud services, and forwards these requests as events over a MQTT broker on the LAN.
 
 ## setup
+
+```bash
+cp config.example.json config.json
+chmod 600 config.json
+```
+
+Modify your config file according to your needs.
+
+### prerequisites
+
+You need a MQTT broker running so that the server can connect to it.
+
+### run with docker
+
+```bash
+dpocker pull sehlceris/home-automation-server
+
+docker container run --rm \
+    -v "${PWD}/config.json:/usr/src/app/config.json" \
+    sehlceris/home-automation-server:latest
+```
+
+## run without docker
+
+### building
 
 ```bash
 SERVICE_NAME=sehlceris-home-automation-server
@@ -16,7 +41,7 @@ npm i
 npm run build
 ```
 
-At this point, edit your config.json to your needs.
+### making the program a system service that runs on startup
 
 ```bash
 echo "
@@ -38,7 +63,6 @@ sudo systemctl enable $SERVICE_NAME
 sudo systemctl start $SERVICE_NAME
 sudo systemctl status $SERVICE_NAME
 ```
-
 
 ## testing
 
