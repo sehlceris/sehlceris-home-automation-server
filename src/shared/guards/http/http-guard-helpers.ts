@@ -1,9 +1,8 @@
-import { ExecutionContext } from '@nestjs/common';
-import { decodeJwtPayload } from '../../utilities/decode-jwt-payload';
-import { GuardHelpers } from '../shared/guard-helpers';
+import {ExecutionContext} from '@nestjs/common';
+import {decodeJwtPayload} from '../../utilities/decode-jwt-payload';
+import {GuardHelpers} from '../shared/guard-helpers';
 
 export class HttpGuardHelpers extends GuardHelpers {
-
   static getBearerTokenFromContext(executionContext: ExecutionContext) {
     const request = executionContext.switchToHttp().getRequest();
     if (!request.bearerToken) {
@@ -14,9 +13,11 @@ export class HttpGuardHelpers extends GuardHelpers {
     return request.bearerToken;
   }
 
-  static async getJwtFromContext<T>(executionContext: ExecutionContext, privateKey: string): Promise<T> {
+  static async getJwtFromContext<T>(
+    executionContext: ExecutionContext,
+    privateKey: string,
+  ): Promise<T> {
     const bearerToken = this.getBearerTokenFromContext(executionContext);
     return decodeJwtPayload(bearerToken, privateKey);
   }
-
 }

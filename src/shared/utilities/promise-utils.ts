@@ -4,7 +4,10 @@ export const delayPromise = (delay: number, resolveAfterTime: boolean = true): P
   });
 };
 
-export const promiseTimeout = <T>(promise: Promise<T>, timeout: number = 1000): Promise<T | void> => {
+export const promiseTimeout = <T>(
+  promise: Promise<T>,
+  timeout: number = 1000,
+): Promise<T | void> => {
   const timeoutPromise = delayPromise(timeout, false);
   return Promise.race([promise, timeoutPromise]);
 };

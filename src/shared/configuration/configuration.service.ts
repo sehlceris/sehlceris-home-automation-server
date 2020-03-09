@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
 import * as fs from 'fs';
-import { IAppConfiguration } from './configuration.interface';
+import {IAppConfiguration} from './configuration.interface';
 import {ConfigurationKey} from '../../configuration-key.enum';
 
 const CONFIG_PATH = './config.json';
@@ -14,7 +14,6 @@ export enum Environment {
 
 @Injectable()
 export class ConfigurationService {
-
   private _config: IAppConfiguration;
 
   constructor() {

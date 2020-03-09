@@ -17,7 +17,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "prettier": "prettier '{src,e2e}/**/*.{ts,js,json,scss,css,html,graphql,md}' --write"
   },
   "dependencies": {
     "@nestjs/common": "^6.11.11",
@@ -41,7 +42,9 @@
     "@types/node": "^13.9.0",
     "@types/socket.io": "^2.1.4",
     "@types/supertest": "^2.0.8",
+    "husky": "^4.2.3",
     "jest": "^25.1.0",
+    "lint-staged": "^10.0.8",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "supertest": "^4.0.2",

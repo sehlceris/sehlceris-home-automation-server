@@ -137,6 +137,12 @@ export class BoundLogger {
     errLevel: LogLevel = LogLevel.ERROR,
     completeLevel: LogLevel = LogLevel.INFO,
   ) {
-    return this.logger.tapObservableForLogging(this.namespace, name, nextLevel, errLevel, completeLevel);
+    return this.logger.tapObservableForLogging(
+      this.namespace,
+      name,
+      nextLevel,
+      errLevel,
+      completeLevel,
+    );
   }
 }

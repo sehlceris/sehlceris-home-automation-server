@@ -1,7 +1,6 @@
 export type ConfigurationKey =
-  'serverPort'
+  | 'serverPort'
   | 'apiKeys'
   | 'mqttBrokerUri'
   | 'mqttUsername'
-  | 'mqttPassword'
-  ;
+  | 'mqttPassword';
