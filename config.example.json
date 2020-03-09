@@ -1,9 +1,12 @@
 {
-  "port": 3000,
+  "serverPort": 3000,
+  "mqttBrokerUri": "tcp://myserver.local:1883",
+  "mqttUsername": "user",
+  "mqttPassword": "qaIj9nWsmw8thXHdKpOmffvzfIae2grr4p67PU",
   "apiKeys": [
     {
       "id": "ifttt",
-      "key": "CKl3euiIUVNgaxyhYqqvXciLCfu2P3TsZjMrPDjenXRZgVcOglA9BpuI0OlGZJ4wFRy8KtqzihzRrQNeslSHTA"
+      "key": "EibUPzD4X9ZQDl8UU1U1e517rBcerStNmQg2sVAQP3Ip5"
     }
   ]
 }

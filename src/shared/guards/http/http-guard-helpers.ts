@@ -1,5 +1,5 @@
 import { ExecutionContext } from '@nestjs/common';
-import { decodeJwtPayload } from '../../../utilities/decode-jwt-payload';
+import { decodeJwtPayload } from '../../utilities/decode-jwt-payload';
 import { GuardHelpers } from '../shared/guard-helpers';
 
 export class HttpGuardHelpers extends GuardHelpers {

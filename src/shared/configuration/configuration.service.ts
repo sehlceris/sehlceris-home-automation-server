@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import { IAppConfiguration } from './configuration.interface';
+import {ConfigurationKey} from '../../configuration-key.enum';
 
 const CONFIG_PATH = './config.json';
 const config: IAppConfiguration = Object.freeze(JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8')));
@@ -26,8 +27,12 @@ export class ConfigurationService {
     return config;
   }
 
-  static get<T>(key: string): T {
-    return this.config[key];
+  static get<T>(key: string, okIfNullOrUndefined: boolean = false): T {
+    const value = this.config[key];
+    if ((value === null || value === undefined) && !okIfNullOrUndefined) {
+      throw new Error(`key ${key} is not in the configuration`);
+    }
+    return value;
   }
 
   // ***** instance methods
@@ -40,7 +45,7 @@ export class ConfigurationService {
     return ConfigurationService.config;
   }
 
-  get<T>(key: string): T {
+  get<T>(key: ConfigurationKey): T {
     return ConfigurationService.get<T>(key);
   }
 }

@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
 import { SharedModule } from '../shared/shared.module';
 import { RemoteControlController } from './remote-control.controller';
-import { RemoteControlGateway } from './remote-control.gateway';
-import { RemoteControlService } from './remote-control.service';
+import { MqttService } from './mqtt.service';
 
 @Module({
   imports: [SharedModule],
   controllers: [RemoteControlController],
-  providers: [RemoteControlService, RemoteControlGateway]
+  providers: [MqttService]
 })
 export class RemoteControlModule {}

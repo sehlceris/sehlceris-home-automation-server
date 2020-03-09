@@ -2,7 +2,7 @@ import * as crypto from 'crypto';
 import * as uuid from 'uuid/v5';
 
 export const randomNumberInsecure = function(min: number = 0, max: number = 1): number {
-  return Math.random() * (max-min) + min;
+  return Math.random() * (max - min) + min;
 };
 
 export const randomIntegerInsecure = function(min: number = 0, max: number = 1): number {

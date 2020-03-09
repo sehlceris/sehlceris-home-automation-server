@@ -1,4 +1,7 @@
-export enum ConfigurationKey {
-  port = 'port',
-  apiKeys = 'apiKeys',
-}
+export type ConfigurationKey =
+  'serverPort'
+  | 'apiKeys'
+  | 'mqttBrokerUri'
+  | 'mqttUsername'
+  | 'mqttPassword'
+  ;

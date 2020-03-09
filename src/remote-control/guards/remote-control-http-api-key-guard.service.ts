@@ -1,15 +1,14 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { ConfigurationKey } from '../../configuration-key.enum';
 import { IRemoteControlApiKey } from '../../shared/configuration/configuration.interface';
 import { ConfigurationService } from '../../shared/configuration/configuration.service';
-import { HttpGuardHelpers } from '../../shared/guards/guards/http/http-guard-helpers';
+import { HttpGuardHelpers } from '../../shared/guards/http/http-guard-helpers';
 import { BoundLogger, LogService } from '../../shared/utilities/log.service';
 
 @Injectable()
-export class RemoteControlHttpGuard implements CanActivate {
+export class RemoteControlHttpApiKeyGuard implements CanActivate {
 
-  protected log: BoundLogger = this.logService.bindToNamespace(RemoteControlHttpGuard.name);
+  protected log: BoundLogger = this.logService.bindToNamespace(RemoteControlHttpApiKeyGuard.name);
 
   protected constructor(
     protected configurationService: ConfigurationService,
@@ -18,7 +17,7 @@ export class RemoteControlHttpGuard implements CanActivate {
   }
 
   canActivate(executionContext: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
-    const apiKeys = this.configurationService.get<IRemoteControlApiKey[]>(ConfigurationKey.apiKeys);
+    const apiKeys = this.configurationService.get<IRemoteControlApiKey[]>('apiKeys');
 
     const request = executionContext.switchToHttp().getRequest();
 

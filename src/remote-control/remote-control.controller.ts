@@ -1,8 +1,15 @@
 import { Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ConfigurationService } from '../shared/configuration/configuration.service';
 import { BoundLogger, LogService } from '../shared/utilities/log.service';
-import { RemoteControlHttpGuard } from './guards/remote-control-http.guard';
-import { RemoteControlService } from './remote-control.service';
+import { RemoteControlHttpApiKeyGuard } from './guards/remote-control-http-api-key-guard.service';
+import { MqttService } from './mqtt.service';
+
+// this type is just here for documentatinon purposes
+export type RemoteControlMqttTopic =
+  'sleepComputerRequest'
+  | 'shutdownComputerRequest'
+  | 'wakeComputerRequest'
+  ;
 
 @Controller('remote-control')
 export class RemoteControlController {
@@ -10,7 +17,7 @@ export class RemoteControlController {
   private log: BoundLogger = this.logService.bindToNamespace(RemoteControlController.name);
 
   constructor(
-    private remoteControlService: RemoteControlService,
+    private mqttService: MqttService,
     private configurationService: ConfigurationService,
     private logService: LogService,
   ) {
@@ -18,10 +25,24 @@ export class RemoteControlController {
   }
 
   @Post('sleepComputers')
-  @UseGuards(RemoteControlHttpGuard)
-  sleepComputers() {
+  @UseGuards(RemoteControlHttpApiKeyGuard)
+  async sleepComputers() {
     this.log.info('responding to remote control command to sleep computers');
-    return this.remoteControlService.sleepComputers();
+    await this.mqttService.publishMessage('sleepComputerRequest');
+  }
+
+  @Post('shutdownComputers')
+  @UseGuards(RemoteControlHttpApiKeyGuard)
+  async shutdownComputers() {
+    this.log.info('responding to remote control command to shutdown computers');
+    await this.mqttService.publishMessage('shutdownComputerRequest');
+  }
+
+  @Post('wakeComputers')
+  @UseGuards(RemoteControlHttpApiKeyGuard)
+  async wakeComputers() {
+    this.log.info('responding to remote control command to wake computers');
+    await this.mqttService.publishMessage('wakeComputerRequest');
   }
 
 }
