@@ -4,7 +4,7 @@ import { BoundLogger, LogService } from '../shared/utilities/log.service';
 import { RemoteControlHttpApiKeyGuard } from './guards/remote-control-http-api-key-guard.service';
 import { MqttService } from './mqtt.service';
 
-// this type is just here for documentatinon purposes
+// this type is just here for documentation purposes
 export type RemoteControlMqttTopic =
   'sleepComputerRequest'
   | 'shutdownComputerRequest'
