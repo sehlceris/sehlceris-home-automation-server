@@ -22,7 +22,7 @@ So, if your server hosting MQTT is named `myserver.local` and has an IP address 
 A possible workaround is to run the container with a [macvlan](https://docs.docker.com/network/macvlan/) network.
 
 ```bash
-dpocker pull sehlceris/home-automation-server
+docker pull sehlceris/home-automation-server
 
 docker container run --rm \
     -v "${PWD}/config.json:/usr/src/app/config.json" \
