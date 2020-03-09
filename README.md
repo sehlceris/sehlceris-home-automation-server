@@ -13,7 +13,8 @@ Modify your config file according to your needs.
 
 ### prerequisites
 
-You need a MQTT broker running so that the server can connect to it.
+- You need a MQTT broker running so that the server can connect to it.
+- node.js 12+
 
 ### run with docker
 
