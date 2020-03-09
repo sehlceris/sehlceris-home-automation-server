@@ -26,6 +26,7 @@ docker pull sehlceris/home-automation-server
 
 docker container run --rm \
     -v "${PWD}/config.json:/usr/src/app/config.json" \
+    -p "3000:3000" \
     sehlceris/home-automation-server:latest
 ```
 
