@@ -24,7 +24,7 @@
   "dependencies": {
     "@nestjs/common": "^6.11.11",
     "@nestjs/core": "^6.11.11",
-    "@nestjs/platform-express": "^6.11.11",
+    "@nestjs/platform-express": "^9.2.1",
     "@nestjs/platform-socket.io": "^6.11.11",
     "@nestjs/websockets": "^6.11.11",
     "async-mqtt": "^2.5.0",
